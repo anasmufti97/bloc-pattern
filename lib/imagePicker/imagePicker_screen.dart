@@ -22,7 +22,7 @@ class ImagePickerScreen extends StatelessWidget {
                   radius: 20,
                   child: Icon(Icons.camera),
 
-                ) : Image.file(File(state.file!.path.toString()),height: 200,width: 200,);
+                ) : Expanded(child: Image.file(File(state.file!.path.toString()),));
               }
           ),
           
