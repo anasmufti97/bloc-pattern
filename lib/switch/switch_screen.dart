@@ -30,7 +30,9 @@ class SwitchWidget extends StatelessWidget {
                     return Switch(
                         value: state.switchValue,
                         onChanged: (newValue) {
-                          context.read<SwitchBlock>().add(SwitchValueChangeEvent());
+                          context
+                              .read<SwitchBlock>()
+                              .add(SwitchValueChangeEvent());
                         });
                   },
                 )
@@ -46,7 +48,6 @@ class SwitchWidget extends StatelessWidget {
                   height: 200,
                   color: Colors.red.withOpacity(state.sliderValue),
                 );
-
               },
             ),
             const SizedBox(
@@ -55,12 +56,15 @@ class SwitchWidget extends StatelessWidget {
             BlocBuilder<SwitchBlock, SwitchState>(
               // buildWhen: (pre, next)=>pre.switchValue != next.switchValue,
               builder: (BuildContext context, state) {
-                return Slider(value: state.sliderValue, onChanged: (value) {
-                  print(state.sliderValue);
+                return Slider(
+                    value: state.sliderValue,
+                    onChanged: (value) {
+                      print(state.sliderValue);
 
-                  context.read<SwitchBlock>().add(SliderValueEvent(slider: value));
-
-                });
+                      context
+                          .read<SwitchBlock>()
+                          .add(SliderValueEvent(slider: value));
+                    });
               },
             )
           ],

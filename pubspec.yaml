@@ -38,6 +38,7 @@ dependencies:
   equatable: ^2.0.5
   uuid: ^4.2.1
   bloc:
+  image_picker:
 
 
 dev_dependencies:

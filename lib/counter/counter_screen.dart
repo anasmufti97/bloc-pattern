@@ -11,7 +11,7 @@ class CounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Counter with BLoC')),
-      body: Column(
+      body: Column (
         children: [
           BlocBuilder<CounterBloc, CounterState>(
             builder: (context, state) {
