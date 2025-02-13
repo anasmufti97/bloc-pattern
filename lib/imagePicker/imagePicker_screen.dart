@@ -18,18 +18,14 @@ class ImagePickerScreen extends StatelessWidget {
 
           BlocBuilder<ImagePickerBloc , ImagePickerState>(
               builder: (context, state){
-                return state.file == null ? const CircleAvatar(
-                  radius: 20,
-                  child: Icon(Icons.camera),
-
-                ) : Expanded(child: Image.file(File(state.file!.path.toString()),));
+                return state.file == null ? const SizedBox() : Expanded(child: Image.file(File(state.file!.path.toString()),));
               }
           ),
           
         ],
       ),
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           FloatingActionButton(
             onPressed: () {
