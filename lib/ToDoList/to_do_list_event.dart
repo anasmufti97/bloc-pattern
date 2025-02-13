@@ -13,6 +13,19 @@ class AddTodoEvent extends ToDoEvent {
   List<Object?> get props => [task];
 }
 
+class ShowControllerTextEvent extends ToDoEvent {
+  final String text;
+
+  const ShowControllerTextEvent({required this.text});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [text];
+}
+
+
+
+
 class RemoveTodoEvent extends ToDoEvent {
   final Object index;
 

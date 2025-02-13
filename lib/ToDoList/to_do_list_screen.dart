@@ -4,37 +4,71 @@ import 'package:block_pattern_flutter_app/ToDoList/to_do_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ToDoScreen extends StatelessWidget {
-  const ToDoScreen({Key? key}) : super(key: key);
+class ToDoScreen extends StatefulWidget {
+  const ToDoScreen({super.key});
 
+  @override
+  State<ToDoScreen> createState() => _ToDoScreenState();
+}
+
+class _ToDoScreenState extends State<ToDoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todo App'),
+        title: const Text('Todo App using BLOC'),
       ),
-      body: BlocBuilder<ToDoBloc, ToDoState>(
-        builder: (BuildContext context,state) {
-        return ListView.builder(
-          itemCount: state.todoList.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(state.todoList[index]??""),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  BlocProvider.of<ToDoBloc>(context).add(RemoveTodoEvent(state.todoList[index]));
+      body: Column(
+        children: [
+          TextFormField(
 
-                },
-              ),
-            );
-          },
-        );
+            onChanged: (v){
+              setState(() {
+                context.read<ToDoBloc>().add(ShowControllerTextEvent(text: v));
+                // context.read<ToDoBloc>().add(ShowControllerTextEvent());
 
-      },),
+              });
+            },
+            controller: BlocProvider.of<ToDoBloc>(context).controller,
+            decoration: const InputDecoration(hintText: 'Write Task'),
+          ),
+          Expanded(
+            child: BlocBuilder<ToDoBloc, ToDoState>(
+              builder: (BuildContext context2, state) {
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.todoList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(state.todoList[index] ?? ""),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                BlocProvider.of<ToDoBloc>(context).add(
+                                    RemoveTodoEvent(state.todoList[index]));
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    Text(
+                        BlocProvider.of<ToDoBloc>(context).controller?.text ?? "")
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()  {
-          BlocProvider.of<ToDoBloc>(context).add(AddTodoEvent('Task 3 added'));
+        onPressed: () {
+          BlocProvider.of<ToDoBloc>(context).add(AddTodoEvent(
+              BlocProvider.of<ToDoBloc>(context).controller?.text ?? ""));
+          // controller.clear();
         },
         child: const Icon(Icons.add),
       ),
