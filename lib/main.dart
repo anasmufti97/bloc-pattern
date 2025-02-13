@@ -1,3 +1,4 @@
+import 'package:block_pattern_flutter_app/ToDoList/to_do_list_bloc.dart';
 import 'package:block_pattern_flutter_app/ToDoList/to_do_list_screen.dart';
 import 'package:block_pattern_flutter_app/imagePicker/imagePicker_bloc.dart';
 import 'package:block_pattern_flutter_app/imagePicker/imagePicker_screen.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<ImagePickerBloc>(create: (context) => ImagePickerBloc(ImagePickerUtils())),
         BlocProvider<SwitchBlock>(create: (context) => SwitchBlock()),
+        BlocProvider<ToDoBloc>(create: (context) => ToDoBloc()),
         BlocProvider<CounterBloc>(create: (context) => CounterBloc()),
         // BlocProvider<CounterBloc>(create: (context) => CounterBloc()), // Adding CounterBloc
       ],
