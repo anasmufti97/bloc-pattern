@@ -1,3 +1,4 @@
+import 'package:block_pattern_flutter_app/ToDoList/to_do_list_screen.dart';
 import 'package:block_pattern_flutter_app/imagePicker/imagePicker_bloc.dart';
 import 'package:block_pattern_flutter_app/imagePicker/imagePicker_screen.dart';
 import 'package:block_pattern_flutter_app/switch/switch_bloc.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ImagePickerScreen(),
+        home: ToDoScreen(),
         // home: SwitchWidget(),
         // home: CounterScreen(),
       ),
