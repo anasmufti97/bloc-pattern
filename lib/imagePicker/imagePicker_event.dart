@@ -8,7 +8,17 @@ abstract class ImagePickerEvent extends Equatable{
 }
 
 
-class CameraCapture extends ImagePickerEvent {}
-class GalleryPicker extends ImagePickerEvent {}
+class CameraCapture extends ImagePickerEvent {
+
+
+
+}
+class GalleryPicker extends ImagePickerEvent {
+
+
+
+
+
+}
 
 
