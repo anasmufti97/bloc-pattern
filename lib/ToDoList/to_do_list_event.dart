@@ -14,13 +14,16 @@ class AddTodoEvent extends ToDoEvent {
 }
 
 class ShowControllerTextEvent extends ToDoEvent {
+
   final String text;
 
   const ShowControllerTextEvent({required this.text});
 
   @override
   // TODO: implement props
+
   List<Object?> get props => [text];
+
 }
 
 

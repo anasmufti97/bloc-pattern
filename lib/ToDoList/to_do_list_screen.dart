@@ -34,6 +34,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
               decoration: const InputDecoration(hintText: 'Write Task'),
             ),
           ),
+
           Expanded(
             child: BlocBuilder<ToDoBloc, ToDoState>(
               builder: (BuildContext context2, state) {
@@ -66,8 +67,11 @@ class _ToDoScreenState extends State<ToDoScreen> {
           ),
         ],
       ),
+
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+
           if (blocProvider.controller?.text == null ||
               blocProvider.controller?.text == "") {
             ScaffoldMessenger.of(context).showSnackBar(

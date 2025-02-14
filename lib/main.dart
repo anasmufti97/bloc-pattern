@@ -18,12 +18,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ImagePickerBloc>(create: (context) => ImagePickerBloc(ImagePickerUtils())),
+        BlocProvider<ImagePickerBloc>(
+            create: (context) => ImagePickerBloc(ImagePickerUtils())),
         BlocProvider<SwitchBlock>(create: (context) => SwitchBlock()),
         BlocProvider<ToDoBloc>(create: (context) => ToDoBloc()),
         BlocProvider<CounterBloc>(create: (context) => CounterBloc()),
         // BlocProvider<CounterBloc>(create: (context) => CounterBloc()), // Adding CounterBloc
       ],
+
+
+
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: ToDoScreen(),
