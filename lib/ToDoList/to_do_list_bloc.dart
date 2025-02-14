@@ -18,6 +18,7 @@ class ToDoBloc extends Bloc<ToDoEvent, ToDoState> {
   _addTodo(AddTodoEvent event, Emitter<ToDoState> emit) {
     todos.add(event.task);
     emit(state.copyWith(todoList: List.from(todos)));
+    controller?.clear();
   }
 
   _removeTodo(RemoveTodoEvent event, Emitter<ToDoState> emit) {

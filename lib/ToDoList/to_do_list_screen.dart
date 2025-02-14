@@ -14,23 +14,25 @@ class ToDoScreen extends StatefulWidget {
 class _ToDoScreenState extends State<ToDoScreen> {
   @override
   Widget build(BuildContext context) {
+    var blocProvider = BlocProvider.of<ToDoBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todo App using BLOC'),
       ),
       body: Column(
         children: [
-          TextFormField(
-
-            onChanged: (v){
-              setState(() {
-                context.read<ToDoBloc>().add(ShowControllerTextEvent(text: v));
-                // context.read<ToDoBloc>().add(ShowControllerTextEvent());
-
-              });
-            },
-            controller: BlocProvider.of<ToDoBloc>(context).controller,
-            decoration: const InputDecoration(hintText: 'Write Task'),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextFormField(
+              onChanged: (v) {
+                setState(() {
+                  context.read<ToDoBloc>().add(ShowControllerTextEvent(text: v));
+                  // context.read<ToDoBloc>().add(ShowControllerTextEvent());
+                });
+              },
+              controller: BlocProvider.of<ToDoBloc>(context).controller,
+              decoration: const InputDecoration(hintText: 'Write Task'),
+            ),
           ),
           Expanded(
             child: BlocBuilder<ToDoBloc, ToDoState>(
@@ -47,7 +49,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                             trailing: IconButton(
                               icon: const Icon(Icons.delete),
                               onPressed: () {
-                                BlocProvider.of<ToDoBloc>(context).add(
+                                blocProvider.add(
                                     RemoveTodoEvent(state.todoList[index]));
                               },
                             ),
@@ -55,8 +57,8 @@ class _ToDoScreenState extends State<ToDoScreen> {
                         },
                       ),
                     ),
-                    Text(
-                        BlocProvider.of<ToDoBloc>(context).controller?.text ?? "")
+                    Text(BlocProvider.of<ToDoBloc>(context).controller?.text ??
+                        "")
                   ],
                 );
               },
@@ -66,8 +68,18 @@ class _ToDoScreenState extends State<ToDoScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          BlocProvider.of<ToDoBloc>(context).add(AddTodoEvent(
-              BlocProvider.of<ToDoBloc>(context).controller?.text ?? ""));
+          if (blocProvider.controller?.text == null ||
+              blocProvider.controller?.text == "") {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Add Task First!'),
+              ),
+            );
+
+          } else {
+            blocProvider.add(AddTodoEvent(blocProvider.controller?.text ?? ""));
+          }
+
           // controller.clear();
         },
         child: const Icon(Icons.add),
