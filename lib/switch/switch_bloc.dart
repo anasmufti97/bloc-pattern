@@ -8,12 +8,19 @@ class SwitchBlock extends Bloc<SwitchEvent, SwitchState> {
     on<SliderValueEvent>(sliderValueChange);
   }
 
-  void _switchValueChange(SwitchValueChangeEvent event, Emitter<SwitchState> emit) {
+  void _switchValueChange
+      (SwitchValueChangeEvent event, Emitter<SwitchState> emit)
+  {
     emit(state.copyWith(switchValue: !state.switchValue));
+
   }
 
-  void sliderValueChange(SliderValueEvent event, Emitter<SwitchState> emit) {
+
+  void sliderValueChange
+      (SliderValueEvent event, Emitter<SwitchState> emit) {
+
     emit(state.copyWith(sliderValue:event.slider));
+
   }
 
 
