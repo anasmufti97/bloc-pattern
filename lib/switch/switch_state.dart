@@ -6,11 +6,18 @@ class SwitchState extends Equatable {
 
   SwitchState({this.switchValue = false, this.sliderValue = .2});
 
+
   SwitchState copyWith({bool? switchValue, double? sliderValue}) {
+
     return SwitchState(
+
       switchValue: switchValue ?? this.switchValue,
+
+
       sliderValue: sliderValue ?? this.sliderValue,
+
     );
+
   }
 
   @override
