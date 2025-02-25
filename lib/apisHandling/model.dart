@@ -5,7 +5,7 @@ class Note {
   String? content;
   DateTime? dateadded;
 
-  Note({ this.id, this.userid, this.title, this.content, this.dateadded });
+  Note({this.id, this.userid, this.title, this.content, this.dateadded});
 
   factory Note.fromMap(Map<String, dynamic> map) {
     return Note(

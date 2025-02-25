@@ -3,7 +3,6 @@ import 'package:block_pattern_flutter_app/apisHandling/model.dart';
 import 'package:flutter/cupertino.dart';
 
 class NotesProvider with ChangeNotifier {
-
   bool isLoading = true;
   List<Note> notes = [];
 
@@ -12,7 +11,11 @@ class NotesProvider with ChangeNotifier {
   }
 
   List<Note> getFilteredNotes(String searchQuery) {
-    return notes.where((element) => element.title!.toLowerCase().contains(searchQuery.toLowerCase()) || element.content!.toLowerCase().contains(searchQuery.toLowerCase())).toList();
+    return notes
+        .where((element) =>
+            element.title!.toLowerCase().contains(searchQuery.toLowerCase()) ||
+            element.content!.toLowerCase().contains(searchQuery.toLowerCase()))
+        .toList();
   }
 
   void sortNotes() {
@@ -27,7 +30,8 @@ class NotesProvider with ChangeNotifier {
   }
 
   void updateNote(Note note) {
-    int indexOfNote = notes.indexOf(notes.firstWhere((element) => element.id == note.id));
+    int indexOfNote =
+        notes.indexOf(notes.firstWhere((element) => element.id == note.id));
     notes[indexOfNote] = note;
     sortNotes();
     notifyListeners();
@@ -35,7 +39,8 @@ class NotesProvider with ChangeNotifier {
   }
 
   void deleteNote(Note note) {
-    int indexOfNote = notes.indexOf(notes.firstWhere((element) => element.id == note.id));
+    int indexOfNote =
+        notes.indexOf(notes.firstWhere((element) => element.id == note.id));
     notes.removeAt(indexOfNote);
     sortNotes();
     notifyListeners();
@@ -48,5 +53,4 @@ class NotesProvider with ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
-
 }
