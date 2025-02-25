@@ -39,6 +39,8 @@ dependencies:
   uuid: ^4.2.1
   bloc:
   image_picker: ^1.1.2
+  provider: ^6.0.1
+
 
 
 dev_dependencies:
