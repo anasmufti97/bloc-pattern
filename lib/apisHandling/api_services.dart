@@ -99,7 +99,6 @@
 //   }
 // }
 
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -107,7 +106,6 @@ import 'package:block_pattern_flutter_app/apisHandling/model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-
   static final String _baseUrl = "https://413c-182-185-158-96.ngrok-free.app";
 
   static Future<void> addNote(Note note) async {
@@ -130,12 +128,11 @@ class ApiService {
     var decoded = jsonDecode(response.body);
 
     List<Note> notes = [];
-    for(var noteMap in decoded) {
+    for (var noteMap in decoded) {
       Note newNote = Note.fromMap(noteMap);
       notes.add(newNote);
     }
 
     return notes;
   }
-
 }
